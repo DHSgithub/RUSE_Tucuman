@@ -1,0 +1,26 @@
+----- Job 'Drivers_bm': ANALYSIS started by User on 2016-11-01 12:46:31 (GoodSync v 7.1.4.5) -----
+Job 'Drivers_bm': 'C:\CIAA\Firmware\projects\drivers_bm' <-> 'C:\SOFT\EDU_CIAA\drivers_bm', PropagateDeletions, SaveDisposedFiles, UseTmpDestFile, ExcludeHidden, ExcludeSystem
+Left: C: NTFS  Total: 148 GB, Free: 68.0 GB, Right: C: NTFS  Total: 148 GB, Free: 68.0 GB
+Filters: m_Included='' m_Excluded='licens*.rfo|cache.rfo|mru.rfo|\System Volume Information|Thumbs.db'
+Left : Files Considered: 5 (excluded 0). Folders Considered: 3 (excluded 1).
+Right: Files Considered: 14 (excluded 0). Folders Considered: 3 (excluded 1).
+Aviso: El Tipo de Copia se aplicará a 3 archivos
+Changes: 18, Conflicts: 0, Errors: 0, Time: 00:00:00
+----- Job 'Drivers_bm': SYNC started by User on 2016-11-01 12:48:02 -----
+Job 'Drivers_bm': 'C:\CIAA\Firmware\projects\drivers_bm' <-> 'C:\SOFT\EDU_CIAA\drivers_bm', PropagateDeletions, SaveDisposedFiles, UseTmpDestFile, ExcludeHidden, ExcludeSystem
+Copy New 'C:\SOFT\EDU_CIAA\drivers_bm\inc\adc.h' -> 'C:\CIAA\Firmware\projects\drivers_bm\inc\adc.h' +
+Copy New 'C:\SOFT\EDU_CIAA\drivers_bm\inc\dac.h' -> 'C:\CIAA\Firmware\projects\drivers_bm\inc\dac.h' +
+Copy New 'C:\SOFT\EDU_CIAA\drivers_bm\inc\itoa.h' -> 'C:\CIAA\Firmware\projects\drivers_bm\inc\itoa.h' +
+Copy New 'C:\SOFT\EDU_CIAA\drivers_bm\inc\switch.h' -> 'C:\CIAA\Firmware\projects\drivers_bm\inc\switch.h' +
+Copy New 'C:\SOFT\EDU_CIAA\drivers_bm\inc\timer.h' -> 'C:\CIAA\Firmware\projects\drivers_bm\inc\timer.h' +
+Copy New 'C:\SOFT\EDU_CIAA\drivers_bm\inc\uart.h' -> 'C:\CIAA\Firmware\projects\drivers_bm\inc\uart.h' +
+Copy New 'C:\SOFT\EDU_CIAA\drivers_bm\src\adc.c' -> 'C:\CIAA\Firmware\projects\drivers_bm\src\adc.c' +
+Copy New 'C:\SOFT\EDU_CIAA\drivers_bm\src\dac.c' -> 'C:\CIAA\Firmware\projects\drivers_bm\src\dac.c' +
+Copy New 'C:\SOFT\EDU_CIAA\drivers_bm\src\itoa.c' -> 'C:\CIAA\Firmware\projects\drivers_bm\src\itoa.c' +
+Copy New 'C:\SOFT\EDU_CIAA\drivers_bm\src\switch.c' -> 'C:\CIAA\Firmware\projects\drivers_bm\src\switch.c' +
+Copy New 'C:\SOFT\EDU_CIAA\drivers_bm\src\timer.c' -> 'C:\CIAA\Firmware\projects\drivers_bm\src\timer.c' +
+Copy New 'C:\SOFT\EDU_CIAA\drivers_bm\src\uart.c' -> 'C:\CIAA\Firmware\projects\drivers_bm\src\uart.c' +
+Copy New 'C:\SOFT\EDU_CIAA\drivers_bm\vector.c' -> 'C:\CIAA\Firmware\projects\drivers_bm\vector.c' +
+Saving State File to C:\CIAA\Firmware\projects\drivers_bm\_gsdata_\_file_state._gs +
+Saving State File to C:\SOFT\EDU_CIAA\drivers_bm\_gsdata_\_file_state._gs +
+Sincronización completa. Errors: 0, Time: 00:00:00
