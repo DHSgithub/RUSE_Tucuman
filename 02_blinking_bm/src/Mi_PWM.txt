@@ -1,0 +1,14 @@
+/// --------------------------
+void timerIsr()        // @ 100 Hz 
+{
+      if(!pwm_val--)
+        digitalWrite( PWM_OUT, LOW );    // Cortar Potencia
+
+      if(!pwm_cont--) {    // fin del ciclo
+        pwm_cont = PWM_MAX;
+        pwm_val = val;
+        
+        if(pwm_val)
+          digitalWrite( PWM_OUT, HIGH );    // Subir Potencia
+      }
+}
