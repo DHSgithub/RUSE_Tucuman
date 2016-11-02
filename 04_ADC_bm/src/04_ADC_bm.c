@@ -102,6 +102,30 @@ uint16_t senial[] = {512,544,576,608,639,670,700,730,759,786,813,838,862,885,907
 uint16_t	Dato_DAC[100];
 
 
+#define  PWM_MAX  100
+
+uint8_t  pwm_cont = PWM_MAX;
+uint8_t  val = 50;
+uint8_t  pwm_val = 50;
+
+
+void PWM_timerIsr()        // @ 100 Hz
+{
+      if(!pwm_val--)
+    	  ApagarLed(LED_3);    // Cortar Potencia
+
+      if(!pwm_cont--) {
+    	  // fin del ciclo
+        pwm_cont = PWM_MAX;
+        pwm_val = val;
+
+        if(pwm_val)
+        	EncenderLed(LED_3);    // Subir Potencia
+      }
+}
+
+
+
 void delay( uint64_t i)
 {
 	for( ; i>0; i--)
@@ -142,11 +166,11 @@ int main(void)
 	ADC_Sel( CH1);
     //#define  CH1 ADC_CH1
 
-	//timer0Init( PeriodoActual, &Actualiza_DAC);
+	timer0Init( 100, &PWM_timerIsr);
 
 
 	PulsosLed(LED_1, 5);
-	delay( 6000000L);
+	delay( 2000000L);
 
 
    /* mi programa principal */
@@ -176,7 +200,9 @@ int main(void)
     	  break;
 
       }
-      Valor_ADC = read_ADC_value_pooling();
+      Valor_ADC = read_ADC_value_pooling();    // leer nuevo valor
+
+      val = Valor_ADC / 10;
 
       if( (Valor_ADC < 200) | (Valor_ADC > 800) )
       {
