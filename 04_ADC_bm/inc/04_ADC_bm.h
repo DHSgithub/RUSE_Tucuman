@@ -65,7 +65,8 @@
 #include "timer.h"
 #include "dac.h"
 #include "adc.h"
-
+#include "uart.h"
+#include "itoa.h"
 
 /*==================[macros]=================================================*/
 #define lpc4337            1

@@ -59,6 +59,7 @@
  */
 
 /*==================[inclusions]=============================================*/
+//#include <stdio.h>
 #include "04_ADC_bm.h"       /* Aqui el nuevo mio  */
 
 #define LED_1  1
@@ -101,6 +102,9 @@ uint16_t senial[] = {512,544,576,608,639,670,700,730,759,786,813,838,862,885,907
 
 uint16_t	Dato_DAC[100];
 
+char	StringData[100];
+
+uint16_t	Valor_ADC;
 
 #define  PWM_MAX  100
 
@@ -124,7 +128,11 @@ void PWM_timerIsr()        // @ 100 Hz
       }
 }
 
-
+void  EmitirPuertoSerie( )
+{
+	intToString( Valor_ADC, StringData, 5, 10);
+	sendString_UART_USB_EDUCIAA(StringData, 4);
+}
 
 void delay( uint64_t i)
 {
@@ -152,7 +160,7 @@ void Actualiza_DAC( void)
 int main(void)
 {
 	uint8_t		TeclaActual;
-	uint16_t	Valor_ADC;
+
 	//uint32_t	PeriodoActual = 10;
 	//uint16_t	i;
 
@@ -162,10 +170,17 @@ int main(void)
 	Init_Switches( );
 	//init_DAC_EDUCIAA( );
 	init_ADC_EDUCIAA( );
-
 	ADC_Sel( CH1);
     //#define  CH1 ADC_CH1
 
+	init_UART_FTDI_EDUCIAA();    // por defect 115200,8,n,1
+
+	//sendString_UART_USB_EDUCIAA(char message[], uint8_t size);
+
+	//void intToString(int16_t value, uint8_t* pBuf, uint32_t len, uint32_t base);
+
+
+	timerInit( 1000, &EmitirPuertoSerie);
 	timer0Init( 100, &PWM_timerIsr);
 
 
@@ -184,7 +199,11 @@ int main(void)
       switch( TeclaActual)
       {
       case TEC1:
+    		//
+    		intToString( Valor_ADC, StringData, 5, 10);
+    		sendString_UART_USB_EDUCIAA( (char *)StringData, 4);
 
+    	  //sprintf( StringData, "val = %d", (int)val);
       	  break;
 
       case TEC2:
