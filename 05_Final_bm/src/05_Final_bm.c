@@ -69,6 +69,10 @@
 #define PUERTA_GUIA  2
 #define LOTE_LISTO   3
 
+#define LED_RGB_ROJO  4
+#define LED_RGB_VERDE 5
+#define LED_RGB_AZUL  6
+
 /*==================[internal data definition]===============================*/
 uint8_t  ContBilletes  = 0;
 uint8_t	 BilleteActual;
@@ -77,7 +81,7 @@ uint8_t	 BilleteEsperado = 20;
 /*==================[internal functions definition]==========================*/
 uint8_t  LeerBillete( )
 {
-  uint8_t  CodigoBillete = 20;
+   uint8_t  CodigoBillete = 20;
 
 	PulsosLed(LED_RGB_AZUL, 2);
 	return( CodigoBillete);
