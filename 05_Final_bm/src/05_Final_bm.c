@@ -97,25 +97,24 @@
  */
 
 
-uint8_t  ContBilletes = 0;
+uint8_t  ContBilletes  = 0;
 uint8_t	 BilleteActual;
-uint8_t	 BilleteEsperado;
+uint8_t	 BilleteEsperado = 20;
 
 
 uint8_t  LeerBillete( )
 {
-  uint8_t  CodigoBillete = 0;
+  uint8_t  CodigoBillete = 20;
 
-	EncenderLed( LED_RGB_AZUL);
+	//
+	PulsosLed(LED_RGB_AZUL, 2);
 	return( CodigoBillete);
 }
 
-void delay( uint64_t i)
+void delay( uint64_t tiempo)
 {
-	for( ; i>0; i--)
-	{
-		;
-	}
+	while( tiempo--);
+
 }
 
 void Actualiza_DAC( void)
@@ -135,16 +134,9 @@ int main(void)
 	init_UART_FTDI_EDUCIAA();    // 9600 / por defecto 115200,8,n,1
 
    /* mi programa principal */
-   
-
 
       TeclaActual = 0;
-//#define MOTOR_CINTA  1
-//#define PUERTA_GUIA  2
-//#define LOTE_LISTO   3
 
-      //InicioLeds( );    //  los leds de CIAA
-      //EncenderLed( );
       ApagarLed( MOTOR_CINTA);
       //
       // display info inicial
@@ -156,9 +148,13 @@ int main(void)
       }
       while( TeclaActual != TEC1);     //  ESPERA BOTON DE INICIO CICLO
 
-      while( ContBilletes <= 100)
+      // iniciando un ciclo de 100 billetes
+
+      while( ContBilletes <= 6)
       {
-    	  if( LeerBillete( ) != 0 )    // Cero mientras no pasen un billete
+    	  delay( 10000000);    // 1 seg... aprox
+
+    	  if( ( BilleteActual = LeerBillete() ) != 0 )    // Cero mientras no pasen un billete
     	  {
     		  EncenderLed( MOTOR_CINTA);
 
