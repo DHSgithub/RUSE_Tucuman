@@ -1,4 +1,4 @@
-/* Copyright 2016, XXXX
+/* Copyright 2016,
  *
  *  * All rights reserved.
  *
@@ -32,7 +32,7 @@
  *
  */
 
-/** Organizador Separador de Billetes  source file
+/** Organizador Separador de Billetes  source file Ing. Daniel Steiner
  **
  ** This is a  example of the CIAA Firmware.
  **
@@ -49,8 +49,8 @@
 /*
  * grupo de trabajo:
 
-   Ing. Telmo Moya
-   Ing. Daniel Steiner
+   Ing. Telmo Moya         Interfz serie con lector, display GLCD
+   Ing. Daniel Steiner     Cuerpo del controlador, sensores, actuadores
 
  *
  */
@@ -62,51 +62,23 @@
  */
 
 /*==================[inclusions]=============================================*/
-//#include <stdio.h>
-#include "05_Final_bm.h"       /* Aqui el nuevo mio  */
+
+#include "05_Final_bm.h"       /*   */
 
 #define MOTOR_CINTA  1
 #define PUERTA_GUIA  2
 #define LOTE_LISTO   3
 
-#define LED_RGB_ROJO  4
-#define LED_RGB_VERDE 5
-#define LED_RGB_AZUL  6
-
-/*==================[macros and definitions]=================================*/
-
-/*==================[internal data declaration]==============================*/
-
-/*==================[internal functions declaration]=========================*/
-
 /*==================[internal data definition]===============================*/
-
-/*==================[external data definition]===============================*/
-
-/*==================[internal functions definition]==========================*/
-
-/*==================[external functions definition]==========================*/
-/** \brief Main function
- *
- * This is the main entry point of the software.
- *
- * \returns 0
- *
- * \remarks This function never returns. Return value is only to avoid compiler
- *          warnings or errors.
- */
-
-
 uint8_t  ContBilletes  = 0;
 uint8_t	 BilleteActual;
 uint8_t	 BilleteEsperado = 20;
 
-
+/*==================[internal functions definition]==========================*/
 uint8_t  LeerBillete( )
 {
   uint8_t  CodigoBillete = 20;
 
-	//
 	PulsosLed(LED_RGB_AZUL, 2);
 	return( CodigoBillete);
 }
@@ -114,14 +86,14 @@ uint8_t  LeerBillete( )
 void delay( uint64_t tiempo)
 {
 	while( tiempo--);
-
 }
 
-void Actualiza_DAC( void)
-{
-
-}
-
+/** \brief Main function
+ * This is the main entry point of the software.
+ * \returns 0
+ * \remarks This function never returns. Return value is only to avoid compiler
+ *          warnings or errors.
+ */
 int main(void)
 {
 	uint8_t		TeclaActual;
@@ -131,7 +103,7 @@ int main(void)
    
 	InicioLeds( );
 	Init_Switches( );
-	init_UART_FTDI_EDUCIAA();    // 9600 / por defecto 115200,8,n,1
+	init_UART_FTDI_EDUCIAA();    // VER 9600 / por defecto 115200,8,n,1
 
    /* mi programa principal */
 
@@ -150,30 +122,32 @@ int main(void)
 
       // iniciando un ciclo de 100 billetes
 
-      while( ContBilletes <= 6)
+      while( ContBilletes < 6)   // DS_DEBUG 100
       {
-    	  delay( 10000000);    // 1 seg... aprox
+    	  delay( 10000000);    // DS_DEBUG - sacar
 
-    	  if( ( BilleteActual = LeerBillete() ) != 0 )    // Cero mientras no pasen un billete
+    	  if( ( BilleteActual = LeerBillete() ) != 0 ) // Cero mientras no pasen un billete
     	  {
     		  EncenderLed( MOTOR_CINTA);
 
-    		  if( BilleteActual == BilleteEsperado)  // PUERTA_GUIA
+    		  if( BilleteActual == BilleteEsperado)  // Actualiza PUERTA_GUIA
     		  {
-    			  EncenderLed( PUERTA_GUIA); // PUERTA_GUIA a Derecha
+    			  EncenderLed( PUERTA_GUIA); // PUERTA_GUIA a Derecha OK
     			  ContBilletes++;
     		  }
     		  else
     		  {
-    			  ApagarLed( PUERTA_GUIA); // PUERTA_GUIA a Izquierda
+    			  ApagarLed( PUERTA_GUIA); // PUERTA_GUIA a Izquierda RECHAZADO
     		  }
     	  }
       }
 
+      // Fin del ciclo de 100 billetes
+      //
       ApagarLed( MOTOR_CINTA);        // Detiene cinta
       EncenderLed( LOTE_LISTO);       // Aviso de ciclo listo
 
-      while(1)
+      while(1)     // Fin del programa, requiere RESET
       { };
     
 	return 0;
