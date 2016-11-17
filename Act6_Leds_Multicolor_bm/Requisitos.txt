@@ -1,0 +1,16 @@
+
+ Alumno: Daniel Steiner
+ 
+Actividad 6: Led Multicolor
+
+Led Multicolor
+
+Diseñe un driver, (timers.c y timers.h), que le permita a la aplicación acceder a los temporizadores del microcontrolador.
+Programe una aplicación que emplee los drivers led.c, teclas.c y timers.c con el siguiente comportamiento:
+
+Al energizar la placa deben parpadear alternadamente los leds Rojo y Verde, 250ms encendido cada led.
+Al presionar la TECLA 1, se debe variar el color del led RGB en, al menos,  16 colores diferentes.
+La temporización de los leds se debe realizar a través del RIT Timer. (ver Temporizadores e Interrupciones)
+
+Comentarios:
+
