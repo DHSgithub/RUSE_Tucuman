@@ -1,0 +1,30 @@
+
+ Alumno: Daniel Steiner
+ 
+Actividad 5: Control de Leds
+
+Control de Leds
+
+Programe una aplicación que emplee los drivers led.c y teclas.c para seleccionar 
+el led que parapdea de la EDU-CIAA. Al iniciar la aplicación debe parpadear el LED 2. 
+Mediante la tecla TEC1 se debe poder seleccionar el led a la izquierda del actual 
+para que para que parpadee, y a través de la tecla TEC4 el de la derecha del actual. 
+La interfaz debe permitir mantener la tecla presionada para modificar la selección 
+de manera reiterativa a una velocidad cómoda para el usuario.
+
+
+Comentarios:
+
+ * Corresponde a la actividad 5 Control de Leds
+ *
+ * TEC1 derecha
+ * TEC2 izquierda
+ *
+
+
+ En clase se agrega esta nueva funcionalidad a la original:
+
+
+ * TEC3 menor frecuencia de parpadeo
+ * TEC4 mayor frecuencia
+ *
