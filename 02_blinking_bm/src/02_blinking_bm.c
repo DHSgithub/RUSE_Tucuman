@@ -61,13 +61,6 @@
 /*==================[inclusions]=============================================*/
 #include "02_blinking_bm.h"       /* Aqui el nuevo mio  */
 
-#define LED_1  1
-#define LED_2  2
-#define LED_3  3
-#define LED_RGB_ROJO  4
-#define LED_RGB_VERDE 5
-#define LED_RGB_AZUL  6
-
 /*==================[macros and definitions]=================================*/
 
 /*==================[internal data declaration]==============================*/
@@ -81,15 +74,7 @@
 /*==================[internal functions definition]==========================*/
 
 /*==================[external functions definition]==========================*/
-/** \brief Main function
- *
- * This is the main entry point of the software.
- *
- * \returns 0
- *
- * \remarks This function never returns. Return value is only to avoid compiler
- *          warnings or errors.
- */
+
 
 void delay( uint64_t i)
 {
@@ -99,51 +84,40 @@ void delay( uint64_t i)
 	}
 }
 
-// enum SWITCHES {TEC1, TEC2, TEC3, TEC4};
-// uint8_t Init_Switches(void);
-// uint8_t Read_Switches(void);
-
+/** \brief Main function
+ *
+ * This is the main entry point of the software
+ * Corresponde a la actividad 5 Control de Leds
+ *
+ * TEC1 derecha
+ * TEC2 izquierda
+ *
+ * TEC3 menor frecuencia de parpadeo
+ * TEC4 mayor frecuencia
+ *
+ * \returns 0
+ *
+ * \remarks This function never returns. Return value is only to avoid compiler
+ *          warnings or errors.
+ */
 int main(void)
 {
-	uint8_t	TeclaActual;
-	uint8_t	LedActual = LED_1;
-	uint64_t	RetardoActual = 3000000L;
+	uint8_t	 TeclaActual;
+	uint8_t	 LedActual = LED_2;
+	uint64_t RetardoActual = 3000000L;
 
    /* inicializaciones */
    
 	InicioLeds( );
 	Init_Switches( );
-
-	PulsosLed(LED_3, 5);
-	delay( 6000000L);
-//	PulsosLed(LED_2, 10);
-//	delay();
-//	PulsosLed(LED_RGB_AZUL, 10);
-//	delay();
    
    /* mi programa principal */
    
-
     while(1)
     {
       TeclaActual = 0;
-/*      if( TeclaActual = Read_Switches() != 0)    // test alguna tecla
-      {
-    	if( TeclaActual == TEC1)
-    	{
-    		LedActual = LED_2;
-    	} else if( TeclaActual == TEC2)
-    	{
-    		LedActual = LED_1;
-    	} else if( TeclaActual == TEC3)
-    	{
-    		RetardoActual = RetardoActual + 1000000L;
-    	} else if( TeclaActual == TEC4)
-    	{
-    		RetardoActual = RetardoActual - 1000000L;
-    	}
-      }   // if
-*/
+      delay( 10000);
+
       TeclaActual = Read_Switches();
       switch( TeclaActual)
       {
@@ -156,11 +130,11 @@ int main(void)
       	  break;
 
       case TEC3:
-    	  if( RetardoActual < 6000000L ) RetardoActual += 1000000L;
+    	  if( RetardoActual < 6000000L ) RetardoActual += 100000L;
       	  break;
 
       case TEC4:
-    	  if( RetardoActual > 100000L ) RetardoActual -= 1000000L;
+    	  if( RetardoActual > 100000L )  RetardoActual -= 100000L;
       	  break;
 
       }

@@ -65,7 +65,12 @@
 #define lpc4337            1
 #define mk60fx512vlq15     2
 
-
+#define LED_1  1
+#define LED_2  2
+#define LED_3  3
+#define LED_RGB_ROJO  4
+#define LED_RGB_VERDE 5
+#define LED_RGB_AZUL  6
 
 /*==================[typedef]================================================*/
 
