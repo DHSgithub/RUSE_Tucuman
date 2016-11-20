@@ -88,6 +88,7 @@ uint32_t readStatus_UART_USB_EDUCIAA();
 void writeByte_UART_USB_EDUCIAA(uint8_t dato);
 void sendString_UART_USB_EDUCIAA(char message[], uint8_t size);
 
+uint32_t readStatus_UART_RS232_EDUCIAA();
 uint8_t readByte_UART_RS232_EDUCIAA();
 
 void intToString(int16_t value, uint8_t* pBuf, uint32_t len, uint32_t base);
